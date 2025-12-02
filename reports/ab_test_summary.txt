@@ -1,0 +1,10 @@
+Action vs Strategy: t=8.7244, p=1.2588e-17, mean1=756403.50, mean2=305422.54, n1=1487, n2=213
+Sports vs Strategy: t=5.2919, p=1.4798e-07, mean1=914376.83, mean2=305422.54, n1=889, n2=213
+
+ESRB rating x genre averages (top rows):
+rating        genre  avg_global_sales   n
+     E         Misc      1.537964e+06 138
+     E     Platform      1.294321e+06 215
+     M      Shooter      1.281772e+06 461
+  E10+         Misc      1.163237e+06  76
+     M Role-Playing      1.126913e+06 126

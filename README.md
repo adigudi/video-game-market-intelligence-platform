@@ -6,78 +6,77 @@ A Full-Stack Data Analytics Project (SQL · Python · C++ · Tableau)
 
 📌 Overview
 
-This project analyzes 16 years of global video game sales, reviews, ratings, and genre performance to help publishers make data-driven decisions about which games to create and which markets to target. The final system combines SQL data engineering, Python analytics, a custom C++ clustering engine, and Tableau dashboards to deliver clear insights and strategic recommendations.
-
-This README is a starter version and will expand as the project develops.
-
----
-
-🚀 Project Goals
-- Build an end-to-end analytics pipeline from raw CSV data to interactive dashboards
-- Clean, transform, and model video game sales data in SQL
-- Use Python for KPI analysis, statistical testing, and feature engineering
-- Implement a C++ clustering module for performance-optimized computation
-- Visualize market insights and launch recommendations in Tableau
-- Produce a polished, portfolio-ready project demonstrating full-stack analytical skills
-
----
-
-🧱 Planned Architecture
-
-This project will be structured as a layered analytics stack:
-
-TABLEAU DASHBOARDS  → Stakeholder-facing insights  
-C++ ENGINE          → Fast clustering & segmentation  
-PYTHON ANALYTICS    → KPIs, A/B tests, feature engineering  
-SQL DATABASE & ETL  → Data cleaning, loading, querying  
-RAW DATA (CSV)      → Source dataset
-
----
-
-📁 Repository Structure (Initial)
-
-├── data/          # Raw and cleaned datasets  
-├── sql/           # Schema, ETL scripts, analytical SQL queries  
-├── python/        # EDA, clustering, statistical tests, integration scripts  
-├── cpp/           # C++ clustering engine source code  
-├── tableau/       # Tableau workbooks and data extracts  
-└── reports/       # Visualizations and executive summaries  
-
-This structure will evolve as more components are completed.
+End-to-end analytics pipeline that cleans raw console sales and population data, builds a SQLite warehouse, runs Python EDA/KPIs and A/B tests, clusters games with a C++ engine, and exports a single flat table for Tableau dashboards.
 
 ---
 
 🛠️ Tech Stack
-
-Languages & Tools:
-- Python (pandas, numpy, scipy, matplotlib, sklearn)
-- SQL (SQLite/PostgreSQL)
-- C++ (clustering engine)
-- Tableau (dashboards & BI layer)
-- GitHub (version control)
-
-Skills Demonstrated:
-- ETL & data modeling
-- Statistical testing
-- Clustering & segmentation
-- Systems integration (Python ↔ C++)
-- Dashboard development
-- Business analytics & storytelling
+- Data: pandas, numpy, scipy, matplotlib, scikit-learn
+- Storage: SQLite (sql/schema.sql, data/games.db)
+- Compute: Python analytics + C++17 clustering engine
+- Viz: Tableau (tableau/games_for_tableau.csv)
+- Glue: pathlib, sqlite3, subprocess, g++
 
 ---
 
-📅 Current Status
+🏗️ Architecture
 
-✔ Repository scaffold prepared  
-⬜ Data cleaning script  
-⬜ SQL schema  
-⬜ ETL pipeline  
-⬜ Python analytics  
-⬜ C++ clustering engine  
-⬜ Tableau dashboards  
-⬜ Final report & README polish
+```
+Console_Data + Population
+         |
+         v
+   Python cleaning
+         |
+         v
+      SQLite DB
+         |
+         v
+  Python analytics
+         |
+         v
+   C++ clustering
+         |
+         v
+  SQLite clusters
+         |
+         v
+      Tableau
+```
 
-This section will be updated as the project progresses.
+---
+
+📁 Repository Structure
+
+├── data/          # Raw and cleaned datasets, games.db, clustering outputs  
+├── sql/           # schema.sql for SQLite tables  
+├── python/        # Cleaning, ETL, analytics, clustering integration, exports  
+├── cpp/           # C++ clustering engine source & binary  
+├── tableau/       # Tableau-ready extracts  
+└── reports/       # Plots, summaries
+
+---
+
+🚀 How to Run (from repo root)
+1) Clean & merge data  
+   - `python python/01_clean_console_data.py`  
+   - `python python/02_clean_population_data.py`  
+   - `python python/03_build_region_population.py`  
+   - `python python/04_merge_games_with_population.py`
+
+2) Create DB & load data  
+   - `python python/05_load_to_sql.py`
+
+3) Analytics & KPIs  
+   - `python python/06_eda_and_kpis.py` (plots to reports/)  
+   - `python python/07_ab_tests.py` (text summary to reports/)
+
+4) Feature prep & clustering  
+   - `python python/08_prepare_features_for_clustering.py`  
+   - `cd cpp && g++ -std=c++17 clustering.cpp -o cluster_engine && cd ..`  
+   - `python python/09_integrate_cpp_clusters.py` (runs C++ engine, loads clusters to DB)
+
+5) Export for Tableau  
+   - `python python/10_export_for_tableau.py` → `tableau/games_for_tableau.csv`
 
 ---
 
